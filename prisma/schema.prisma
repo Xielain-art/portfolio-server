@@ -13,25 +13,25 @@ datasource db {
 model Skill {
   id Int @id @default(autoincrement())
   title String
-  description String 
+  description String?
 }
 
 model Experience {
   id Int @id @default(autoincrement())
   title String
-  description String
-  placeOfWork String
-  start DateTime
-  End DateTime
+  description String?
+  placeOfWork String?
+  start DateTime?
+  End DateTime?
 }
 
 model Education {
   id Int @id @default(autoincrement())
   title String
-  description String
-  placeOfEducation String
-  start DateTime
-  End DateTime
+  description String?
+  placeOfEducation String?
+  start DateTime?
+  End DateTime?
 }
 
 model Portfolio {
