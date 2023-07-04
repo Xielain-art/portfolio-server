@@ -25,4 +25,12 @@ model Experience {
   End DateTime
 }
 
+model Education {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  placeOfEducation String
+  start DateTime
+  End DateTime
+}
 
