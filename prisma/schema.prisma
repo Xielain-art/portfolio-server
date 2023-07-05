@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -11,40 +9,40 @@ datasource db {
 }
 
 model Skill {
-  id Int @id @default(autoincrement())
-  title String
+  id          Int     @id @default(autoincrement())
+  title       String
   description String?
 }
 
 model Experience {
-  id Int @id @default(autoincrement())
-  title String
+  id          Int       @id @default(autoincrement())
+  title       String
   description String?
   placeOfWork String?
-  start DateTime?
-  End DateTime?
+  start       DateTime?
+  End         DateTime?
 }
 
 model Education {
-  id Int @id @default(autoincrement())
-  title String
-  description String?
+  id               Int       @id @default(autoincrement())
+  title            String
+  description      String?
   placeOfEducation String?
-  start DateTime?
-  End DateTime?
+  start            DateTime?
+  End              DateTime?
 }
 
 model Portfolio {
-  id Int @id @default(autoincrement())
-  title String
-  date DateTime?
+  id          Int       @id @default(autoincrement())
+  title       String
+  date        DateTime?
   description String?
-  stack String
-  image String?
+  stack       String
+  image       String?
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  email String @unique
+  id       Int    @id @default(autoincrement())
+  email    String @unique
   password String
 }
