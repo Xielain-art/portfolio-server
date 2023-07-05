@@ -13,9 +13,7 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-/prisma/dev.db
-.db-journal
-.db
+
 
 # Tests
 /coverage
@@ -36,4 +34,8 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
 /migrations
+.db
+.db-journal
+/prisma/dev.db
