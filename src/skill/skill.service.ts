@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Prisma, Skill } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
-import { Prisma, Skill } from '@prisma/client';
 
 @Injectable()
 export class SkillService {
@@ -17,11 +17,32 @@ export class SkillService {
     return this.prisma.skill.findMany();
   }
 
-  update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill`;
+  async update(id: number, updateSkillDto: UpdateSkillDto) {
+    const data = { ...updateSkillDto };
+
+    try {
+      await this.prisma.skill.update({ where: { id }, data });
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(`${err.meta.cause}`, HttpStatus.BAD_REQUEST);
+      }
+
+      throw new HttpException('Unknown error', HttpStatus.BAD_REQUEST);
+    }
+
+    return { status: 'ok' };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} skill`;
+  async remove(id: Prisma.SkillWhereUniqueInput) {
+    try {
+      await this.prisma.skill.delete({ where: id });
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new HttpException(`${err.meta.cause}`, HttpStatus.BAD_REQUEST);
+      }
+
+      throw new HttpException('Unknown error', HttpStatus.BAD_REQUEST);
+    }
+    return { status: 'ok' };
   }
 }

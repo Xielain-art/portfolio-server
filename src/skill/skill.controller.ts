@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Res,
 } from '@nestjs/common';
 import { SkillService } from './skill.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
@@ -32,6 +33,6 @@ export class SkillController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.skillService.remove(+id);
+    return this.skillService.remove({ id: Number(id) });
   }
 }
