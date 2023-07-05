@@ -17,18 +17,12 @@ export class SkillController {
 
   @Post()
   create(@Body() createSkillDto: CreateSkillDto) {
-    console.log(createSkillDto);
     return this.skillService.create(createSkillDto);
   }
 
   @Get()
   findAll() {
     return this.skillService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.skillService.findOne(+id);
   }
 
   @Patch(':id')
